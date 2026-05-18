@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './quien-soy.html',
-  styleUrls: ['./quien-soy.css']
+  styleUrl: './quien-soy.css'
 })
 export class QuienSoy implements OnInit {
   githubUser: any = null;
@@ -15,13 +15,22 @@ export class QuienSoy implements OnInit {
 
   private githubUsername = 'antonellatti';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
+    console.log('ngOnInit ejecutado');
     this.http.get(`https://api.github.com/users/${this.githubUsername}`)
       .subscribe({
-        next: (data) => { this.githubUser = data; this.loading = false; },
-        error: () => { this.loading = false; }
+        next: (data) => { 
+          this.githubUser = data; 
+          this.loading = false;
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.log('Error GitHub:', err);
+          this.loading = false;
+          this.cdr.detectChanges();
+        }
       });
   }
 }

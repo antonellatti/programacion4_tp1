@@ -1,27 +1,47 @@
-<div class="container py-5">
-    <h2 class="text-center mb-4">Quién Soy</h2>
+<div class="page-bg quien-soy-page">
+  <div class="quien-soy-container">
+    <h2 class="quien-soy-titulo">Quien Soy</h2>
 
-    <div *ngIf="loading" class="text-center">
-        <div class="spinner-border text-primary"></div>
-    </div>
+    @if (loading) {
+      <div class="quien-soy-loading">
+        <div class="spinner-border text-light"></div>
+      </div>
+    }
 
-    <div *ngIf="githubUser" class="card mx-auto shadow" style="max-width: 500px">
-        <div class="card-body text-center">
-        <img [src]="githubUser.avatar_url" class="rounded-circle mb-3" width="120">
-        <h4>{{ githubUser.name }}</h4>
-        <p class="text-muted">{{ githubUser.login }}</p>
-        <p>{{ githubUser.bio }}</p>
-        <p><strong>Seguidores:</strong> {{ githubUser.followers }}</p>
-        <p><strong>Repos públicos:</strong> {{ githubUser.public_repos }}</p>
+    @if (githubUser) {
+      <div class="quien-soy-card">
+        <img [src]="githubUser.avatar_url" class="quien-soy-avatar">
+        <h4 class="quien-soy-nombre">{{ githubUser.name }}</h4>
+        <p class="quien-soy-usuario">@{{ githubUser.login }}</p>
+        <p class="quien-soy-bio">{{ githubUser.bio }}</p>
+        <div class="quien-soy-stats">
+          <div class="quien-soy-stat">
+            <span class="quien-soy-stat-num">{{ githubUser.followers }}</span>
+            <span class="quien-soy-stat-label">Seguidores</span>
+          </div>
+          <div class="quien-soy-stat">
+            <span class="quien-soy-stat-num">{{ githubUser.public_repos }}</span>
+            <span class="quien-soy-stat-label">Repos</span>
+          </div>
         </div>
-    </div>
+      </div>
+    }
 
-    <div class="card mx-auto mt-4 shadow" style="max-width: 500px">
-        <div class="card-body">
-            <h5>Adivina el CRUCERO!</h5>
-            <p>
-                Tenés que adivinar que barco crucero hay en la imagen.
-            </p>
-        </div>
+    <div class="quien-soy-card quien-soy-nombre">
+      <h5><i class="ti ti-ship"></i> Antonella Tizzano </h5>
+      <p>
+        Software Developer con sensibilidad estética y orientación a la 
+        experiencia de usuario, accesibilidad y usabilidad.
+        La relación con el cliente, sus necesidades y expectativas
+        me permiten un análisis minucioso de los requerimientos del sistema 
+        y los seteos y ajustes necesarios para llevar a cabo de forma exitosa 
+        la creación del producto digital que él aspira, pudiendo asi obtener 
+        su satisfacción absoluta y asegurar la fidelidad del cliente.
+        <br>
+        Este proyecto es un trabajo de la última materia de Programación IV, 
+        de la tecnicatura universitaria en Programación de la Univarsidad Tecnológica Nacional. 
+        Mayo, 2026.
+      </p>
     </div>
+  </div>
 </div>

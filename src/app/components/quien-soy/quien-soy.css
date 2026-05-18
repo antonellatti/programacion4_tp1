@@ -1,0 +1,84 @@
+.quien-soy-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quien-soy-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.quien-soy-titulo {
+  color: #fff;
+  font-size: 32px;
+  text-align: center;
+}
+.quien-soy-loading {
+  text-align: center;
+}
+.quien-soy-card {
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+.quien-soy-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #2dd4bf;
+}
+.quien-soy-nombre {
+  color: #fff;
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+.quien-soy-usuario {
+  color: #2dd4bf;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.quien-soy-bio {
+  color: rgba(255,255,255,0.6);
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+.quien-soy-stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+.quien-soy-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quien-soy-stat-num {
+  color: #2dd4bf;
+  font-size: 32px;
+  font-weight: 500;
+}
+.quien-soy-stat-label {
+  color: rgba(255,255,255,0.6);
+  font-size: 16px;
+}
+.quien-soy-nombre h5 {
+  color: #2dd4bf;
+  font-size: 25px;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+.quien-soy-nombre p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  margin: 0;
+}
