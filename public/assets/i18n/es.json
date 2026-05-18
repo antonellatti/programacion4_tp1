@@ -1,0 +1,58 @@
+{
+  "HOME": {
+    "TITULO": "Bienvenidos a la Sala de Juegos de Antonella! 🕹️🎮🧩",
+    "SUBTITULO": "Desafia tus habilidades con esta seleccion de juegos clasicos!",
+    "LOGIN": "Logueate",
+    "REGISTRO": "Registrate",
+    "BIENVENIDA": "Hola",
+    "CERRAR_SESION": "Cerrar sesion"
+  },
+  "NAV": {
+    "INICIO": "Inicio",
+    "JUEGOS": "Juegos",
+    "RESULTADOS": "Resultados",
+    "CHAT": "Chat",
+    "QUIEN_SOY": "Quien soy"
+  },
+  "JUEGOS": {
+    "AHORCADO": "Ahorcado",
+    "AHORCADO_DESC": "Adivinar la palabra letra por letra",
+    "MAYOR_MENOR": "Mayor o menor",
+    "MAYOR_MENOR_DESC": "Adivinar si la carta que sigue es mayor o menor.",
+    "PREGUNTADOS": "Preguntados",
+    "PREGUNTADOS_DESC": "Preguntas de distintas categorias",
+    "PROPIO": "¿Que crucero es?",
+    "PROPIO_DESC": "En el mar hay muchas lineas de cruceros. ¿Los reconoces?",
+    "CHAT": "Chat global",
+    "CHAT_DESC": "Chat en tiempo real"
+  },
+  "LOGIN": {
+    "TITULO": "Iniciar Sesion",
+    "EMAIL": "Email",
+    "PASSWORD": "Contraseña",
+    "EMAIL_INVALIDO": "Email invalido",
+    "PASSWORD_CORTA": "Minimo 6 caracteres",
+    "ENTRAR": "Entrar",
+    "CARGANDO": "Cargando...",
+    "ACCESO_RAPIDO": "Acceso rapido",
+    "NO_CUENTA": "¿No tenes cuenta?",
+    "REGISTRATE": "Registrate",
+    "ERROR": "Email o contraseña incorrectos"
+  },
+  "REGISTRO": {
+    "TITULO": "Registrarse",
+    "NOMBRE": "Nombre",
+    "APELLIDO": "Apellido",
+    "EDAD": "Edad",
+    "EMAIL": "Email",
+    "PASSWORD": "Contraseña",
+    "CAMPO_REQUERIDO": "Campo requerido",
+    "EMAIL_INVALIDO": "Email invalido",
+    "PASSWORD_CORTA": "Mínimo 6 caracteres",
+    "EDAD_INVALIDA": "Edad invalida",
+    "REGISTRAR": "Registrarse",
+    "CARGANDO": "Cargando...",
+    "YA_CUENTA": "¿Ya tenes cuenta?",
+    "INICIAR": "Ingresa"
+  }
+}

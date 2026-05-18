@@ -1,0 +1,58 @@
+{
+  "HOME": {
+    "TITULO": "Welcome to Antonella's Gameplay! 🔮✨🌙",
+    "SUBTITULO": "Defy gravity! Or your intellect... you choose!",
+    "LOGIN": "Log in",
+    "REGISTRO": "Sign up",
+    "BIENVENIDO": "Welcome,",
+    "CERRAR_SESION": "Log out"
+  },
+  "NAV": {
+    "INICIO": "Home",
+    "JUEGOS": "Games",
+    "RESULTADOS": "Results",
+    "CHAT": "Chat",
+    "QUIEN_SOY": "About me"
+  },
+  "JUEGOS": {
+    "AHORCADO": "Hangman",
+    "AHORCADO_DESC": "Guess the word letter by letter",
+    "MAYOR_MENOR": "Higher or lower",
+    "MAYOR_MENOR_DESC": "Will the next card be higher or lower?",
+    "PREGUNTADOS": "Trivia",
+    "PREGUNTADOS_DESC": "Answer questions from different categories",
+    "PROPIO": "Guess the Cruise!",
+    "PROPIO_DESC": "My special game, just for you!",
+    "CHAT": "Chat",
+    "CHAT_DESC": "Chat with all players in real time"
+  },
+  "LOGIN": {
+    "TITULO": "Log In",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "EMAIL_INVALIDO": "Invalid email",
+    "PASSWORD_CORTA": "Minimum 6 characters",
+    "ENTRAR": "Enter",
+    "CARGANDO": "Loading...",
+    "ACCESO_RAPIDO": "Quick access",
+    "NO_CUENTA": "Don't have an account?",
+    "REGISTRATE": "Sign up",
+    "ERROR": "Incorrect email or password"
+  },
+  "REGISTRO": {
+    "TITULO": "Sign Up",
+    "NOMBRE": "First name",
+    "APELLIDO": "Last name",
+    "EDAD": "Age",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CAMPO_REQUERIDO": "Required field",
+    "EMAIL_INVALIDO": "Invalid email",
+    "PASSWORD_CORTA": "Minimum 6 characters",
+    "EDAD_INVALIDA": "Invalid age",
+    "REGISTRAR": "Sign up",
+    "CARGANDO": "Loading...",
+    "YA_CUENTA": "Already have an account?",
+    "INICIAR": "Log in"
+  }
+}

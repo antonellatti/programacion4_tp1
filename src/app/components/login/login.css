@@ -1,0 +1,118 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-card {
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+}
+.login-titulo {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.2rem;
+}
+.login-field label {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+}
+.login-field input {
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 15px;
+  font-family: Cubic, sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.login-field input:focus {
+  border-color: #2dd4bf;
+}
+.login-field input::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+.login-error {
+  color: #f87171;
+  font-size: 12px;
+}
+.login-btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #2dd4bf;
+  color: #0d1b2a;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: Cubic, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s;
+}
+.login-btn-primary:hover { opacity: 0.85; }
+.login-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.login-divider {
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  margin: 1.5rem 0 1rem;
+  position: relative;
+}
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 0.5px;
+  background: rgba(255,255,255,0.15);
+}
+.login-divider::before { left: 0; }
+.login-divider::after { right: 0; }
+.login-rapido {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.login-btn-rapido {
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-family: Cubic, sans-serif;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.login-btn-rapido:hover {
+  background: rgba(45,212,191,0.1);
+  border-color: #2dd4bf;
+}
+.login-registro {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+  margin-top: 1.5rem;
+}
+.login-registro a {
+  color: #2dd4bf;
+  text-decoration: none;
+}
+.login-registro a:hover { text-decoration: underline; 
+}
