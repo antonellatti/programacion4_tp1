@@ -13,3 +13,8 @@ juegos-de-antonella.vercel.app
 - Bootstrap
 - Vercel
 - UX/UI
+- ngx-translate
+
+# Sprints
+- Sprint 1: Proyecto base, componentes, favicon, Quién Soy
+- Sprint 2: Login, Registro, Home dinámico, Guards
