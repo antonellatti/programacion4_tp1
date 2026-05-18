@@ -1,0 +1,66 @@
+<div class="page-bg">
+  <nav class="navbar">
+    <a class="navbar-brand" routerLink="/home">
+      <i class="ti ti-device-gamepad-2"></i> Sala de Juegos
+    </a>
+    <div class="navbar-links">
+      <a routerLink="/home">{{ 'NAV.INICIO' | translate }}</a>
+      <a routerLink="/resultados">{{ 'NAV.RESULTADOS' | translate }}</a>
+      <a routerLink="/chat">{{ 'NAV.CHAT' | translate }}</a>
+      <a routerLink="/quien-soy">{{ 'NAV.QUIEN_SOY' | translate }}</a>
+      <a (click)="cambiarIdioma()" class="btn-language" style="cursor: pointer;">
+        {{ idiomaActual === 'es' ? '🇬🇧 EN' : '🇦🇷 ES' }}
+      </a>
+    </div>
+  </nav>
+
+  <div class="home-hero">
+    <h1>{{ 'HOME.TITULO' | translate }}</h1>
+    <p>{{ 'HOME.SUBTITULO' | translate }}</p>
+  </div>
+
+  <!-- Si NO está logueado -->
+  @if (!usuarioActual) {
+    <div class="styled-btn-group">
+      <button class="styled-btn btn-login" routerLink="/login">{{ 'HOME.LOGIN' | translate }}</button>
+      <button class="styled-btn btn-register" routerLink="/registro">{{ 'HOME.REGISTRO' | translate }}</button>
+    </div>
+  }
+
+  <!-- Si está logueado -->
+  @if (usuarioActual) {
+    <div class="home-usuario">
+      <p class="home-bienvenida">{{ 'HOME.BIENVENIDA' | translate }} {{ nombreUsuario }}</p>
+      <button class="styled-btn btn-register" (click)="cerrarSesion()">{{ 'HOME.CERRAR_SESION' | translate }}</button>
+    </div>
+  }
+
+
+  <div class="home-cards">
+    <div class="home-card" routerLink="/ahorcado">
+      <i class="ti ti-man"></i>
+      <h3>{{ 'JUEGOS.AHORCADO' | translate }}</h3>
+      <p>{{ 'JUEGOS.AHORCADO_DESC' | translate }}</p>
+    </div>
+    <div class="home-card" routerLink="/mayor-menor">
+      <i class="ti ti-cards"></i>
+      <h3>{{ 'JUEGOS.MAYOR_MENOR' | translate }}</h3>
+      <p>{{ 'JUEGOS.MAYOR_MENOR_DESC' | translate }}</p>
+    </div>
+    <div class="home-card" routerLink="/preguntados">
+      <i class="ti ti-help-circle"></i>
+      <h3>{{ 'JUEGOS.PREGUNTADOS' | translate }}</h3>
+      <p>{{ 'JUEGOS.PREGUNTADOS_DESC' | translate }}</p>
+    </div>
+    <div class="home-card" routerLink="/juego-propio">
+      <i class="ti ti-puzzle"></i>
+      <h3>{{ 'JUEGOS.PROPIO' | translate }}</h3>
+      <p>{{ 'JUEGOS.PROPIO_DESC' | translate }}</p>
+    </div>
+    <div class="home-card" routerLink="/chat">
+      <i class="ti ti-message-circle"></i>
+      <h3>{{ 'JUEGOS.CHAT' | translate }}</h3>
+      <p>{{ 'JUEGOS.CHAT_DESC' | translate }}</p>
+    </div>
+  </div>
+</div>

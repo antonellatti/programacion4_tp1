@@ -1,0 +1,27 @@
+<div class="container py-5">
+    <h2 class="text-center mb-4">Quién Soy</h2>
+
+    <div *ngIf="loading" class="text-center">
+        <div class="spinner-border text-primary"></div>
+    </div>
+
+    <div *ngIf="githubUser" class="card mx-auto shadow" style="max-width: 500px">
+        <div class="card-body text-center">
+        <img [src]="githubUser.avatar_url" class="rounded-circle mb-3" width="120">
+        <h4>{{ githubUser.name }}</h4>
+        <p class="text-muted">{{ githubUser.login }}</p>
+        <p>{{ githubUser.bio }}</p>
+        <p><strong>Seguidores:</strong> {{ githubUser.followers }}</p>
+        <p><strong>Repos públicos:</strong> {{ githubUser.public_repos }}</p>
+        </div>
+    </div>
+
+    <div class="card mx-auto mt-4 shadow" style="max-width: 500px">
+        <div class="card-body">
+            <h5>Adivina el CRUCERO!</h5>
+            <p>
+                Tenés que adivinar que barco crucero hay en la imagen.
+            </p>
+        </div>
+    </div>
+</div>
