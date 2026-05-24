@@ -1,6 +1,6 @@
 {
   "HOME": {
-    "TITULO": "Bienvenidos a la Sala de Juegos de Antonella! 🕹️🎮🧩",
+    "TITULO": "Bienvenidos a la Sala de Juegos de Antonella! ",
     "SUBTITULO": "Desafia tus habilidades con esta seleccion de juegos clasicos!",
     "LOGIN": "Logueate",
     "REGISTRO": "Registrate",
@@ -37,7 +37,9 @@
     "ACCESO_RAPIDO": "Acceso rapido",
     "NO_CUENTA": "¿No tenes cuenta?",
     "REGISTRATE": "Registrate",
-    "ERROR": "Email o contraseña incorrectos"
+    "ERROR": "Email o contraseña incorrectos",
+    "ERROR_TITULO": "Error",
+    "CERRAR": "Cerrar"
   },
   "REGISTRO": {
     "TITULO": "Registrarse",

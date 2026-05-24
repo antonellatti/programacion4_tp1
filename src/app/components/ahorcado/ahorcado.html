@@ -1,0 +1,109 @@
+<div class="ahorcado-page">
+  <div class="ahorcado-container">
+
+    @if (!categoriaSeleccionada) {
+      <div class="ahorcado-card">
+        <h2 class="ahorcado-titulo">Ahorcado 🪝</h2>
+        <p class="ahorcado-subtitulo">Elegí una categoría para empezar</p>
+        <div class="ahorcado-categorias">
+          @for (cat of categorias; track cat.valor) {
+            <button class="ahorcado-btn-categoria" (click)="seleccionarCategoria(cat.valor)">
+              {{ cat.nombre }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    @if (categoriaSeleccionada && !juegoTerminado) {
+      <div class="ahorcado-card">
+        <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
+        ← Volver</button>
+        <h2 class="ahorcado-titulo">Ahorcado 🪝</h2>
+        <div class="ahorcado-info">
+          <span>⏱ {{ tiempoSegundos }}s</span>
+          <span>🔠 {{ intentosRestantes }}</span>
+        </div>
+
+				<div class="ahorcado-svg-container">
+					<svg viewBox="0 0 200 250" class="ahorcado-svg">
+						<!-- Estructura fija -->
+						<line x1="20" y1="240" x2="180" y2="240" stroke="#2dd4bf" stroke-width="4"/>
+						<line x1="60" y1="240" x2="60" y2="20" stroke="#2dd4bf" stroke-width="4"/>
+						<line x1="60" y1="20" x2="130" y2="20" stroke="#2dd4bf" stroke-width="4"/>
+						<line x1="130" y1="20" x2="130" y2="50" stroke="#2dd4bf" stroke-width="4"/>
+
+						<!-- Cabeza -->
+						@if (letrasErradas.length >= 1) {
+							<circle cx="130" cy="70" r="20" stroke="#f87171" stroke-width="3" fill="none"/>
+						}
+						<!-- Cuerpo -->
+						@if (letrasErradas.length >= 2) {
+							<line x1="130" y1="90" x2="130" y2="150" stroke="#f87171" stroke-width="3"/>
+						}
+						<!-- Brazo izquierdo -->
+						@if (letrasErradas.length >= 3) {
+							<line x1="130" y1="110" x2="100" y2="140" stroke="#f87171" stroke-width="3"/>
+						}
+						<!-- Brazo derecho -->
+						@if (letrasErradas.length >= 4) {
+							<line x1="130" y1="110" x2="160" y2="140" stroke="#f87171" stroke-width="3"/>
+						}
+						<!-- Pierna izquierda -->
+						@if (letrasErradas.length >= 5) {
+							<line x1="130" y1="150" x2="100" y2="190" stroke="#f87171" stroke-width="3"/>
+						}
+						<!-- Pierna derecha -->
+						@if (letrasErradas.length >= 6) {
+							<line x1="130" y1="150" x2="160" y2="190" stroke="#f87171" stroke-width="3"/>
+						}
+					</svg>
+				</div>
+
+        <div class="ahorcado-palabra">
+          @for (letra of palabraMostrada.split(' '); track $index) {
+            <span class="ahorcado-letra">{{ letra }}</span>
+          }
+        </div>
+
+        <div class="ahorcado-erradas">
+          @for (letra of letrasErradas; track letra) {
+            <span class="ahorcado-letra-errada">{{ letra }}</span>
+          }
+        </div>
+
+        <div class="ahorcado-teclado">
+          @for (letra of abecedario; track letra) {
+            <button 
+              class="ahorcado-btn-letra"
+              [class.usada]="letraUsada(letra)"
+              [class.correcta]="letrasAdivinadas.includes(letra)"
+              [class.errada]="letrasErradas.includes(letra)"
+              [disabled]="letraUsada(letra)"
+              (click)="elegirLetra(letra)">
+              {{ letra }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    @if (juegoTerminado) {
+      <div class="ahorcado-card">
+        @if (gano) {
+          <h2 class="ahorcado-resultado-titulo gano">🎉 ¡Ganaste!</h2>
+        } @else {
+          <h2 class="ahorcado-resultado-titulo perdio">💀 ¡Perdiste!</h2>
+        }
+        <p class="ahorcado-resultado-palabra">La palabra era: <strong>{{ palabraSecreta }}</strong></p>
+        <p class="ahorcado-resultado-info">⏱ Tiempo: {{ tiempoSegundos }}s</p>
+        <p class="ahorcado-resultado-info">❌ Errores: {{ letrasErradas.length }}</p>
+        <div class="ahorcado-resultado-btns">
+          <button class="ahorcado-btn-categoria" (click)="reiniciar()">Jugar de nuevo</button>
+          <button class="ahorcado-btn-categoria" routerLink="/home">Volver al inicio</button>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

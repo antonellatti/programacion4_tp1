@@ -1,49 +1,49 @@
 <div class="page-bg registro-page">
   <div class="registro-card">
+    <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
+    ← Volver</button>
     <h2 class="registro-titulo">{{ 'REGISTRO.TITULO' | translate }}</h2>
 
     <form [formGroup]="form" (ngSubmit)="registrar()">
       <div class="registro-field">
         <label>{{ 'REGISTRO.NOMBRE' | translate }}</label>
         <input formControlName="nombre" type="text" placeholder="Juan">
-        <span class="registro-error" *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
-          {{ 'REGISTRO.CAMPO_REQUERIDO' | translate }}
-        </span>
+        @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+          <span class="registro-error">{{ 'REGISTRO.CAMPO_REQUERIDO' | translate }}</span>
+        }
       </div>
 
       <div class="registro-field">
         <label>{{ 'REGISTRO.APELLIDO' | translate }}</label>
         <input formControlName="apellido" type="text" placeholder="Pérez">
-        <span class="registro-error" *ngIf="form.get('apellido')?.invalid && form.get('apellido')?.touched">
-          {{ 'REGISTRO.CAMPO_REQUERIDO' | translate }}
-        </span>
+        @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {
+          <span class="registro-error">{{ 'REGISTRO.CAMPO_REQUERIDO' | translate }}</span>
+        }
       </div>
 
       <div class="registro-field">
         <label>{{ 'REGISTRO.EDAD' | translate }}</label>
         <input formControlName="edad" type="number" placeholder="25">
-        <span class="registro-error" *ngIf="form.get('edad')?.invalid && form.get('edad')?.touched">
-          {{ 'REGISTRO.EDAD_INVALIDA' | translate }}
-        </span>
+        @if (form.get('edad')?.invalid && form.get('edad')?.touched) {
+          <span class="registro-error">{{ 'REGISTRO.EDAD_INVALIDA' | translate }}</span>
+        }
       </div>
 
       <div class="registro-field">
         <label>{{ 'REGISTRO.EMAIL' | translate }}</label>
         <input formControlName="email" type="email" placeholder="tu@email.com">
-        <span class="registro-error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-          {{ 'REGISTRO.EMAIL_INVALIDO' | translate }}
-        </span>
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <span class="registro-error">{{ 'REGISTRO.EMAIL_INVALIDO' | translate }}</span>
+        }
       </div>
 
       <div class="registro-field">
         <label>{{ 'REGISTRO.PASSWORD' | translate }}</label>
         <input formControlName="password" type="password" placeholder="••••••">
-        <span class="registro-error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-          {{ 'REGISTRO.PASSWORD_CORTA' | translate }}
-        </span>
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+          <span class="registro-error">{{ 'REGISTRO.PASSWORD_CORTA' | translate }}</span>
+        }
       </div>
-
-      <span class="registro-error" *ngIf="error">{{ error }}</span>
 
       <button class="registro-btn-primary" type="submit" [disabled]="cargando">
         {{ cargando ? ('REGISTRO.CARGANDO' | translate) : ('REGISTRO.REGISTRAR' | translate) }}
@@ -54,5 +54,23 @@
       {{ 'REGISTRO.YA_CUENTA' | translate }}
       <a routerLink="/login">{{ 'REGISTRO.INICIAR' | translate }}</a>
     </p>
+  </div>
+</div>
+
+<!-- Modal de error -->
+<div class="modal fade" id="errorModalRegistro" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title">⚠️ Error</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        {{ errorMsg }}
+      </div>
+      <div class="modal-footer border-secondary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
   </div>
 </div>

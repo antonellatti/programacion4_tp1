@@ -1,6 +1,6 @@
 {
   "HOME": {
-    "TITULO": "Welcome to Antonella's Gameplay! 🔮✨🌙",
+    "TITULO": "Welcome to Antonella's Gameplay! ",
     "SUBTITULO": "Defy gravity! Or your intellect... you choose!",
     "LOGIN": "Log in",
     "REGISTRO": "Sign up",
@@ -37,7 +37,9 @@
     "ACCESO_RAPIDO": "Quick access",
     "NO_CUENTA": "Don't have an account?",
     "REGISTRATE": "Sign up",
-    "ERROR": "Incorrect email or password"
+    "ERROR": "Incorrect email or password",
+    "ERROR_TITULO": "Error",
+    "CERRAR": "Close"
   },
   "REGISTRO": {
     "TITULO": "Sign Up",

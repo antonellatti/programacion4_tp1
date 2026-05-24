@@ -22,6 +22,7 @@
   text-align: center;
 }
 .quien-soy-card {
+  backdrop-filter: blur(4px);
   background: rgba(255,255,255,0.08);
   border: 0.5px solid rgba(255,255,255,0.15);
   border-radius: 16px;

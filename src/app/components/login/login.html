@@ -1,25 +1,25 @@
 <div class="page-bg login-page">
   <div class="login-card">
+    <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
+    ← Volver</button>
     <h2 class="login-titulo">{{ 'LOGIN.TITULO' | translate }}</h2>
 
     <form [formGroup]="form" (ngSubmit)="iniciarSesion()">
       <div class="login-field">
         <label>{{ 'LOGIN.EMAIL' | translate }}</label>
         <input formControlName="email" type="email" placeholder="tu@email.com">
-        <span class="login-error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-          {{ 'LOGIN.EMAIL_INVALIDO' | translate }}
-        </span>
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <span class="login-error">{{ 'LOGIN.EMAIL_INVALIDO' | translate }}</span>
+        }
       </div>
 
       <div class="login-field">
         <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
         <input formControlName="password" type="password" placeholder="••••••">
-        <span class="login-error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-          {{ 'LOGIN.PASSWORD_CORTA' | translate }}
-        </span>
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+          <span class="login-error">{{ 'LOGIN.PASSWORD_CORTA' | translate }}</span>
+        }
       </div>
-
-      <span class="login-error" *ngIf="error">{{ 'LOGIN.ERROR' | translate }}</span>
 
       <button class="login-btn-primary" type="submit" [disabled]="cargando">
         {{ cargando ? ('LOGIN.CARGANDO' | translate) : ('LOGIN.ENTRAR' | translate) }}
@@ -29,17 +29,36 @@
     <div class="login-divider">{{ 'LOGIN.ACCESO_RAPIDO' | translate }}</div>
 
     <div class="login-rapido">
-      <button *ngFor="let u of usuariosRapidos"
-              class="login-btn-rapido"
-              (click)="loginRapido(u)"
-              [disabled]="cargando">
-        {{ u.nombre }}
-      </button>
+      @for (u of usuariosRapidos; track u.email) {
+        <button class="login-btn-rapido" (click)="loginRapido(u)" [disabled]="cargando">
+          {{ u.nombre }}
+        </button>
+      }
     </div>
 
     <p class="login-registro">
       {{ 'LOGIN.NO_CUENTA' | translate }}
       <a routerLink="/registro">{{ 'LOGIN.REGISTRATE' | translate }}</a>
     </p>
+  </div>
+</div>
+
+<!-- modal bootstrap p/ errores -->
+<div class="modal fade" id="errorModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title">⚠️ {{ 'LOGIN.ERROR_TITULO' | translate }}</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        {{ errorMsg }}
+      </div>
+      <div class="modal-footer border-secondary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          {{ 'LOGIN.CERRAR' | translate }}
+        </button>
+      </div>
+    </div>
   </div>
 </div>

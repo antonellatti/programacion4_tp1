@@ -1,0 +1,40 @@
+@if (usuarioActual && !estaEnChat) {
+  <div class="chat-flotante" [class.expandido]="expandido">
+    
+    <div class="chat-flotante-header" (click)="toggleChat()">
+      <span>Chat <i class="ti ti-messages"></i></span>
+      <span>{{ expandido ? '▼' : '▲' }}</span>
+    </div>
+
+    @if (expandido) {
+      <div class="chat-flotante-body">
+        <div class="chat-flotante-mensajes" #mensajesContainer>
+          @for (msg of mensajes; track msg.id) {
+            <div class="chat-flotante-mensaje" [class.mio]="esMio(msg)" [class.otro]="!esMio(msg)">
+              <span class="chat-flotante-nombre">{{ msg.usuario_nombre }}</span>
+              <div class="chat-flotante-burbuja">{{ msg.mensaje }}</div>
+              <span class="chat-flotante-hora">{{ formatearHora(msg.created_at) }}</span>
+            </div>
+          }
+        </div>
+
+        <div class="chat-flotante-input-container">
+          <input
+            class="chat-flotante-input"
+            type="text"
+            placeholder="Escribí un mensaje..."
+            [(ngModel)]="nuevoMensaje"
+            (keyup.enter)="enviarMensaje()"
+            [disabled]="cargando">
+          <button
+            class="chat-flotante-btn"
+            (click)="enviarMensaje()"
+            [disabled]="cargando || !nuevoMensaje.trim()">
+            ➤
+          </button>
+        </div>
+      </div>
+    }
+
+  </div>
+}
