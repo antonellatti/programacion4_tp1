@@ -1,0 +1,67 @@
+<div class="mayor-menor-page">
+  <div class="mayor-menor-container">
+
+    @if (!juegoTerminado) {
+      <div class="mayor-menor-card">
+        <h2 class="mayor-menor-titulo">🃏 Mayor o Menor</h2>
+
+        <div class="mayor-menor-stats">
+          <span>✅ Acertadas: {{ cartasAcertadas }}</span>
+          <span>🃏 Cartas restantes: {{ mazo.length }}</span>
+        </div>
+
+        <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
+          ← Volver</button>
+
+        @if (mensajeResultado) {
+          <div class="mayor-menor-mensaje">{{ mensajeResultado }}</div>
+        }
+
+        <div class="mayor-menor-cartas">
+          @if (cartaActual) {
+            <div class="carta">
+              <div class="carta-valor">{{ cartaActual.valor }}</div>
+              <div class="carta-palo">{{ getEmoji(cartaActual.palo) }}</div>
+              <div class="carta-nombre">{{ cartaActual.palo }}</div>
+            </div>
+          }
+
+          @if (mostrarSiguiente && cartaSiguiente) {
+            <div class="carta carta-siguiente">
+              <div class="carta-valor">{{ cartaSiguiente.valor }}</div>
+              <div class="carta-palo">{{ getEmoji(cartaSiguiente.palo) }}</div>
+              <div class="carta-nombre">{{ cartaSiguiente.palo }}</div>
+            </div>
+          }
+
+          @if (!mostrarSiguiente) {
+            <div class="carta carta-oculta">
+              <div class="carta-dorso">?</div>
+            </div>
+          }
+        </div>
+
+        <div class="mayor-menor-botones">
+          <button class="mayor-menor-btn" (click)="elegir('mayor')" [disabled]="mostrarSiguiente">
+            ⬆ Mayor ⬆
+          </button>
+          <button class="mayor-menor-btn" (click)="elegir('menor')" [disabled]="mostrarSiguiente">
+            ⬇ Menor ⬇
+          </button>
+        </div>
+      </div>
+    }
+
+    @if (juegoTerminado) {
+      <div class="mayor-menor-card">
+        <h2 class="mayor-menor-titulo">🎉 Juego terminado</h2>
+        <p class="mayor-menor-resultado">Acertaste {{ cartasAcertadas }} de {{ totalCartas }} cartas</p>
+        <div class="mayor-menor-resultado-btns">
+          <button class="mayor-menor-btn" (click)="iniciarJuego()">Jugar de nuevo</button>
+          <button class="mayor-menor-btn" routerLink="/home">Volver al inicio</button>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

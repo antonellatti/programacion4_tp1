@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { SupabaseService } from '../../services/supabase';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class Login {
   form: FormGroup;
-  error = '';
+  errorMsg = '';
   cargando = false;
 
   usuariosRapidos = [
@@ -34,15 +35,23 @@ export class Login {
     });
   }
 
+  mostrarError(mensaje: string) {
+    this.errorMsg = mensaje;
+    const modal = new bootstrap.Modal(document.getElementById('errorModal'));
+    modal.show();
+  }
+
   async iniciarSesion() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      this.mostrarError('Por favor completá todos los campos correctamente.');
+      return;
+    }
     this.cargando = true;
-    this.error = '';
     try {
       await this.supabase.login(this.form.value.email, this.form.value.password);
       this.router.navigate(['/home']);
     } catch (e: any) {
-      this.error = 'Email o contraseña incorrectos';
+      this.mostrarError('Email o contraseña incorrectos.');
     } finally {
       this.cargando = false;
     }
@@ -50,12 +59,11 @@ export class Login {
 
   async loginRapido(usuario: any) {
     this.cargando = true;
-    this.error = '';
     try {
       await this.supabase.login(usuario.email, usuario.password);
       this.router.navigate(['/home']);
     } catch (e: any) {
-      this.error = 'Error en inicio de sesion rapido';
+      this.mostrarError('Error en inicio de sesión rápido.');
     } finally {
       this.cargando = false;
     }
