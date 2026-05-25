@@ -8,7 +8,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  font-family: Cubic, sans-serif;
 }
 .mayor-menor-page::before {
   content: '';
@@ -108,7 +107,6 @@
   padding: 12px 32px;
   border-radius: 25px;
   font-size: 18px;
-  font-family: Cubic, sans-serif;
   font-weight: 500;
   cursor: pointer;
   transition:
@@ -135,10 +133,16 @@
   top: 20px;
   left: 20px;
 	background: transparent;
-  border: none;
-  color: rgba(255,255,255,0.7);
+  border: 0.5px solid rgba(255,255,255,0.3);
+  padding: 6px 16px;
+  border-radius: 25px;
+  color: rgba(255,255,255,0.5);
   cursor: pointer;
   transition: 0.2s;
+}
+.btn-volver:hover {
+  color: #ffffff;
+  border-color: #ffffff;
 }
 .mayor-menor-resultado {
   font-size: 20px;
