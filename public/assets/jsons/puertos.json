@@ -1,0 +1,19 @@
+[
+  { "archivo": "charlottetown", "nombre": "Charlottetown, Canada" },
+  { "archivo": "CostaMaya", "nombre": "Costa Maya, Mexico" },
+  { "archivo": "cozumel", "nombre": "Cozumel, Mexico" },
+  { "archivo": "FortLauderdale", "nombre": "Fort Lauderdale, Florida, USA" },
+  { "archivo": "GrandTurk", "nombre": "Grand Turk, Turk and Caicos" },
+  { "archivo": "kusadasi", "nombre": "Kusadasi, Turkey" },
+  { "archivo": "madeira", "nombre": "Funchal, Madeira, Portugal" },
+  { "archivo": "mallorca", "nombre": "Mallorca, Spain" },
+  { "archivo": "malta", "nombre": "Valetta, Malta" },
+  { "archivo": "nassau", "nombre": "Nassau, Bahamas" },
+  { "archivo": "quebec", "nombre": "Quebec, Canada" },
+  { "archivo": "cocoCay", "nombre": "Coco Cay, Bahamas" },
+  { "archivo": "sanJuan", "nombre": "San Juan, Puerto Rico" },
+  { "archivo": "santorini", "nombre": "Santorini, Greece" },
+  { "archivo": "Tenerife", "nombre": "Tenerife, Canary Islands, Spain" },
+  { "archivo": "trieste", "nombre": "Trieste, Italy" },
+  { "archivo": "zadar", "nombre": "Zadar, Croatia" }
+]

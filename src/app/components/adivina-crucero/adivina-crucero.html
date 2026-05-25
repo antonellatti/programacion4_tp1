@@ -1,0 +1,88 @@
+<div class="crucero-page">
+  <div class="crucero-container">
+
+    @if (!categoriaSeleccionada) {
+      <div class="crucero-card">
+        <h2 class="crucero-titulo">Adivina el Crucero <i class="ti ti-ship"></i></h2>
+        <p class="crucero-subtitulo">Elegí una categoría para empezar</p>
+        <div class="crucero-categorias">
+          @for (cat of categorias; track cat.valor) {
+            <button class="crucero-btn" (click)="seleccionarCategoria(cat.valor)">
+              {{ cat.nombre }}
+            </button>
+          }
+        </div>
+        <button class="crucero-btn outline" routerLink="/home">← Volver</button>
+      </div>
+    }
+
+    @if (categoriaSeleccionada && !juegoTerminado && preguntaActual) {
+      <div class="crucero-card">
+        <div class="crucero-header">
+          <button class="crucero-btn-volver" (click)="volverCategorias()">← Volver</button>
+          <span class="crucero-progreso">{{ indicePregunta + 1 }} / {{ preguntas.length }}</span>
+          <span class="crucero-correctas">✅ {{ correctas }}</span>
+        </div>
+
+        <img [src]="preguntaActual.imagen" class="crucero-imagen" alt="Adivina">
+
+        @if (mostrandoFeedback) {
+          <div class="crucero-feedback" [class.correcto]="respuestaSeleccionada === preguntaActual.respuestaCorrecta">
+            @if (respuestaSeleccionada === preguntaActual.respuestaCorrecta) {
+              <span>✅ Correcto!</span>
+            } @else {
+              <span>❌ ¡No! Es {{ preguntaActual.respuestaCorrecta }}</span>
+            }
+          </div>
+        }
+
+        <p class="crucero-pregunta">
+          {{ categoriaSeleccionada === 'cruceros' ? '¿Que crucero es?' : '¿Que puerto es?' }}
+        </p>
+
+        <div class="crucero-opciones">
+          @for (opcion of preguntaActual.opciones; track $index) {
+            <button
+              class="crucero-opcion"
+              [class.correcta]="getClaseOpcion(opcion) === 'correcta'"
+              [class.errada]="getClaseOpcion(opcion) === 'errada'"
+              [disabled]="!!respuestaSeleccionada"
+              (click)="responder(opcion)">
+              {{ opcion }}
+            </button>
+          }
+        </div>
+        
+      </div>
+    }
+
+    @if (juegoTerminado) {
+      <div class="crucero-card">
+        <h2 class="crucero-titulo">🎉 ¡Juego terminado!</h2>
+        <p class="crucero-resultado">Acertaste {{ correctas }} de {{ preguntas.length }}</p>
+        <div class="crucero-btns">
+          <button class="crucero-btn" (click)="reiniciar()">Jugar de nuevo</button>
+          <button class="crucero-btn outline" (click)="volverCategorias()">Cambiar categoría</button>
+          <button class="crucero-btn outline" routerLink="/home">← Inicio</button>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
+
+<!-- Modal de error -->
+<div class="modal fade" id="errorModalCrucero" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title">⚠️ Error</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">{{ errorMsg }}</div>
+      <div class="modal-footer border-secondary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

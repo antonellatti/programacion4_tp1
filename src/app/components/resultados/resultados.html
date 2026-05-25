@@ -1,0 +1,148 @@
+<div class="resultados-page">
+  <div class="resultados-container">
+    <div class="resultados-header">
+      <button class="resultados-btn-volver" routerLink="/home">← Volver</button>
+      <h2 class="resultados-titulo">🏆 Resultados</h2>
+    </div>
+
+    @if (cargando) {
+      <div class="resultados-cargando">
+        <div class="spinner-border text-light"></div>
+      </div>
+    }
+
+    @if (!cargando) {
+
+      <!-- AHORCADO -->
+      <div class="resultados-card">
+        <h3 class="resultados-subtitulo">🎮 Ahorcado</h3>
+        @if (resultadosAhorcado.length === 0) {
+          <p class="resultados-vacio">No hay resultados todavía</p>
+        } @else {
+          <table class="resultados-tabla">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Palabra</th>
+                <th>Resultado</th>
+                <th>Errores</th>
+                <th>Tiempo</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of resultadosAhorcado; track r.id; let i = $index) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ r.usuario_email }}</td>
+                  <td>{{ r.palabra }}</td>
+                  <td>{{ r.gano ? '✅ Ganó' : '❌ Perdió' }}</td>
+                  <td>{{ r.intentos_usados }}</td>
+                  <td>{{ r.tiempo_segundos }}s</td>
+                  <td>{{ formatearFecha(r.created_at) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+
+      <!-- MAYOR O MENOR -->
+      <div class="resultados-card">
+        <h3 class="resultados-subtitulo">🃏 Mayor o Menor</h3>
+        @if (resultadosMayorMenor.length === 0) {
+          <p class="resultados-vacio">No hay resultados todavía</p>
+        } @else {
+          <table class="resultados-tabla">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Acertadas</th>
+                <th>Total</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of resultadosMayorMenor; track r.id; let i = $index) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ r.usuario_email }}</td>
+                  <td>{{ r.cartas_acertadas }}</td>
+                  <td>{{ r.total_cartas }}</td>
+                  <td>{{ formatearFecha(r.created_at) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+
+      <!-- PREGUNTADOS -->
+      <div class="resultados-card">
+        <h3 class="resultados-subtitulo">❓ Preguntados</h3>
+        @if (resultadosPreguntados.length === 0) {
+          <p class="resultados-vacio">No hay resultados todavía</p>
+        } @else {
+          <table class="resultados-tabla">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Correctas</th>
+                <th>Total</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of resultadosPreguntados; track r.id; let i = $index) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ r.usuario_email }}</td>
+                  <td>{{ r.correctas }}</td>
+                  <td>{{ r.total_preguntas }}</td>
+                  <td>{{ formatearFecha(r.created_at) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+
+      <!-- ADIVINA EL CRUCERO -->
+      <div class="resultados-card">
+        <h3 class="resultados-subtitulo">🚢 Adivina el Crucero</h3>
+        @if (resultadosCrucero.length === 0) {
+          <p class="resultados-vacio">No hay resultados todavía</p>
+        } @else {
+          <table class="resultados-tabla">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Correctas</th>
+                <th>Total</th>
+                <th>Categoría</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of resultadosCrucero; track r.id; let i = $index) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ r.usuario_email }}</td>
+                  <td>{{ r.correctas }}</td>
+                  <td>{{ r.total_preguntas }}</td>
+                  <td>{{ r.categoria }}</td>
+                  <td>{{ formatearFecha(r.created_at) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+
+    }
+  </div>
+</div>

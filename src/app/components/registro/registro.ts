@@ -56,7 +56,11 @@ export class Registro {
       );
       this.router.navigate(['/home']);
     } catch (e: any) {
-      this.mostrarError(e.message || 'Error al registrarse.');
+      if (e.message?.includes('User already registered') || e.message?.includes('already been registered')) {
+        this.mostrarError('Este email ya está registrado. Iniciá sesión.');
+      } else {
+        this.mostrarError(e.message || 'Error al registrarse.');
+      }
     } finally {
       this.cargando = false;
     }
