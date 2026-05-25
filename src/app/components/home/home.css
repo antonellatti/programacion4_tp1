@@ -45,6 +45,7 @@
   background: rgba(45,212,191,0.08);
   transform: scale(1.10);
   border-color: rgba(45,212,191,0.4);
+  animation: glow-pulse 2s ease-in-out infinite;
 }
 .home-card i {
   font-size: 36px;

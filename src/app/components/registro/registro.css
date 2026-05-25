@@ -28,7 +28,7 @@
 }
 .registro-field label {
   color: rgba(255,255,255,0.7);
-  font-size: 14px;
+  font-size: 18px;
 }
 .registro-field input {
   background: rgba(255,255,255,0.07);
@@ -36,8 +36,7 @@
   border-radius: 8px;
   padding: 10px 14px;
   color: #fff;
-  font-size: 15px;
-  font-family: Cubic, sans-serif;
+  font-size: 18px;
   outline: none;
   transition: border-color 0.2s;
 }
@@ -49,7 +48,7 @@
 }
 .registro-error {
   color: #f87171;
-  font-size: 12px;
+  font-size: 18px;
 }
 .registro-btn-primary {
   width: 100%;
@@ -58,8 +57,7 @@
   color: #0d1b2a;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
-  font-family: Cubic, sans-serif;
+  font-size: 18px;
   font-weight: 500;
   cursor: pointer;
   margin-top: 0.5rem;
@@ -70,7 +68,7 @@
 .registro-login {
   text-align: center;
   color: rgba(255,255,255,0.5);
-  font-size: 14px;
+  font-size: 18px;
   margin-top: 1.5rem;
 }
 .registro-login a {
