@@ -78,9 +78,9 @@ export class MayorMenor implements OnInit {
 
     if (esCorrecta) {
       this.cartasAcertadas++;
-      this.mensajeResultado = '✅ ¡Correcto!';
+      this.mensajeResultado = '✅ ¡Correcto! ✅';
     } else {
-      this.mensajeResultado = '❌ ¡Incorrecto!';
+      this.mensajeResultado = '❌ ¡Incorrecto! ❌';
     }
 
     this.cdr.detectChanges();
