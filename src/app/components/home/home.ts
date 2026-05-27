@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
+
 export class Home implements OnInit {
   idiomaActual = 'es';
   usuarioActual: any = null;
   nombreUsuario = '';
+  esAdmin = false;
 
   constructor(
     private translate: TranslateService,
@@ -29,6 +31,12 @@ export class Home implements OnInit {
     this.usuarioActual = await this.supabase.getUsuarioActual();
     if (this.usuarioActual) {
     this.nombreUsuario = await this.supabase.getNombreUsuario(this.usuarioActual.id);
+    const { data } = await this.supabase.client
+        .from('usuarios')
+        .select('es_admin')
+        .eq('id', this.usuarioActual.id)
+        .single();
+      this.esAdmin = data?.es_admin || false;
     }
     this.cdr.detectChanges();
 

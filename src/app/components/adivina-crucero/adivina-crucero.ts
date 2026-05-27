@@ -26,8 +26,8 @@ interface Pregunta {
 export class AdivinaCrucero implements OnInit {
 
   categorias = [
-    { nombre: 'Cruceros 🚢', valor: 'cruceros' },
-    { nombre: 'Puertos ⚓', valor: 'puertos' }
+    { nombre: 'Cruceros', valor: 'cruceros', icono: 'ti ti-speedboat' },
+    { nombre: 'Puertos', valor: 'puertos', icono: 'ti ti-anchor' }
   ];
 
   cruceros: Item[] = [];

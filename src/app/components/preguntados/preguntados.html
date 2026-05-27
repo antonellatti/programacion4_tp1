@@ -18,9 +18,11 @@
     @if (!cargando && !error && !juegoTerminado && preguntaActual) {
       <div class="preguntados-card">
         <div class="preguntados-header">
-          <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">← Volver</button>
+          <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
+            ← Volver</button>
+          <h2>Preguntados <i class="ti ti-help-hexagon"></i></h2>
           <span class="preguntados-progreso">{{ indicePregunta + 1 }} / {{ preguntas.length }}</span>
-          <span class="preguntados-correctas">✅ {{ correctas }}</span>
+          <span class="preguntados-correctas"><i class="ti ti-check"></i> {{ correctas }}</span>
         </div>
 
         <h3 class="preguntados-pregunta">{{ preguntaActual.question }}</h3>

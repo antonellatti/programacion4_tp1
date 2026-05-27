@@ -1,8 +1,15 @@
 <div class="page-bg login-page">
   <div class="login-card">
-    <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
-    ← Volver</button>
-    <h2 class="login-titulo">{{ 'LOGIN.TITULO' | translate }}</h2>
+
+    <div class="login-header">
+      <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
+        ← Volver
+      </button>
+      <h2 class="login-titulo">
+        {{ 'LOGIN.TITULO' | translate }}
+        <i class="ti ti-login-2"></i>
+      </h2>
+    </div>
 
     <form [formGroup]="form" (ngSubmit)="iniciarSesion()">
       <div class="login-field">

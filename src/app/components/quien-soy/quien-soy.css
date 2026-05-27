@@ -13,10 +13,18 @@
   align-items: center;
   gap: 1.5rem;
 }
+.quien-soy-header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .quien-soy-titulo {
-  color: #fff;
+  color: #2dd4bf;
   font-size: 32px;
   text-align: center;
+  margin: 0;
 }
 .quien-soy-loading {
   text-align: center;
@@ -82,4 +90,19 @@
   color: rgba(255,255,255,0.7);
   font-size: 16px;
   margin: 0;
+}
+.btn-volver {
+  position: absolute;
+  left: 0;
+  transition: 0.2s;
+  border: 0.5px solid rgba(255,255,255,0.3);
+  padding: 6px 16px;
+  border-radius: 25px;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.07);
+  cursor: pointer;
+}
+.btn-volver:hover {
+  color: #2dd4bf;
+  border-color: #2dd4bf;
 }

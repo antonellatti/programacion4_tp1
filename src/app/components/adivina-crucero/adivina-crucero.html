@@ -8,11 +8,11 @@
         <div class="crucero-categorias">
           @for (cat of categorias; track cat.valor) {
             <button class="crucero-btn" (click)="seleccionarCategoria(cat.valor)">
-              {{ cat.nombre }}
+              {{ cat.nombre }} <i [class]="cat.icono"></i>
             </button>
           }
         </div>
-        <button class="crucero-btn outline" routerLink="/home">← Volver</button>
+        <button class="crucero-btn outline" routerLink="/home">← Home</button>
       </div>
     }
 
@@ -20,8 +20,8 @@
       <div class="crucero-card">
         <div class="crucero-header">
           <button class="crucero-btn-volver" (click)="volverCategorias()">← Volver</button>
-          <span class="crucero-progreso">{{ indicePregunta + 1 }} / {{ preguntas.length }}</span>
-          <span class="crucero-correctas">✅ {{ correctas }}</span>
+          <h2 class="crucero-titulo">Adivina el Crucero <i class="ti ti-ship"></i></h2>
+          <span class="crucero-correctas"><i class="ti ti-check"></i> {{ correctas }}</span>
         </div>
 
         <img [src]="preguntaActual.imagen" class="crucero-imagen" alt="Adivina">
@@ -37,7 +37,8 @@
         }
 
         <p class="crucero-pregunta">
-          {{ categoriaSeleccionada === 'cruceros' ? '¿Que crucero es?' : '¿Que puerto es?' }}
+          <span>{{ categoriaSeleccionada === 'cruceros' ? 'Que crucero es?' : 'Que puerto es?' }}</span>
+          <span class="crucero-progreso">{{ indicePregunta + 1 }} / {{ preguntas.length }}</span>
         </p>
 
         <div class="crucero-opciones">

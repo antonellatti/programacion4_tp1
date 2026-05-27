@@ -1,8 +1,15 @@
 <div class="page-bg registro-page">
   <div class="registro-card">
-    <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
-    ← Volver</button>
-    <h2 class="registro-titulo">{{ 'REGISTRO.TITULO' | translate }}</h2>
+    
+    <div class="registro-header">
+        <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
+          ← Volver
+        </button>
+        <h2 class="registro-titulo">
+          {{ 'REGISTRO.TITULO' | translate }}
+          <i class="ti ti-ballpen"></i>
+        </h2>
+    </div>
 
     <form [formGroup]="form" (ngSubmit)="registrar()">
       <div class="registro-field">

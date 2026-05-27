@@ -1,0 +1,156 @@
+.encuesta-page {
+  background-image: url('/assets/imgs/gameover.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.encuesta-page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 0;
+}
+.encuesta-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+}
+.encuesta-card {
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.encuesta-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.encuesta-titulo {
+  font-size: 26px;
+  color: #2dd4bf;
+  margin: 0;
+}
+.encuesta-btn-volver {
+  position: absolute;
+  left: 0;
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  border: 0.5px solid rgba(255,255,255,0.3);
+  border-radius: 25px;
+  padding: 6px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.encuesta-btn-volver:hover {
+  color: #2dd4bf;
+  border-color: #2dd4bf;
+}
+.encuesta-seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.encuesta-subtitulo {
+  font-size: 20px;
+  color: #2dd4bf;
+  margin-top: 30px;
+}
+.encuesta-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.encuesta-field label {
+  color: rgba(255,255,255,0.7);
+  font-size: 18px;
+}
+.encuesta-field input,
+.encuesta-field textarea {
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+.encuesta-field input:focus,
+.encuesta-field textarea:focus {
+  border-color: #2dd4bf;
+}
+.encuesta-field input::placeholder,
+.encuesta-field textarea::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+.encuesta-error {
+  color: #f87171;
+  font-size: 16px;
+}
+.encuesta-radios,
+.encuesta-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.encuesta-radio-label,
+.encuesta-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+  cursor: pointer;
+}
+.encuesta-radio-label input,
+.encuesta-checkbox-label input {
+  accent-color: #2dd4bf;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.encuesta-btn {
+  background: #2dd4bf;
+  color: #0d1b2a;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: center;
+  display: block;
+  margin: 20px auto 0;
+}
+.encuesta-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+.encuesta-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.encuesta-gracias {
+  text-align: center;
+  align-items: center;
+}
+.encuesta-gracias-texto {
+  color: #fff;
+  font-size: 18px;
+}

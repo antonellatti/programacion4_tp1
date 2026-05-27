@@ -1,7 +1,7 @@
 {
   "HOME": {
-    "TITULO": "Bienvenidos a la Sala de Juegos de Antonella! ",
-    "SUBTITULO": "Desafia tus habilidades con esta seleccion de juegos clasicos!",
+    "TITULO": "Bienvenidos a Antonella's playground ",
+    "SUBTITULO": "Jugate unos juegos",
     "LOGIN": "Logueate",
     "REGISTRO": "Registrate",
     "BIENVENIDA": "Hola",
@@ -12,7 +12,8 @@
     "JUEGOS": "Juegos",
     "RESULTADOS": "Resultados",
     "CHAT": "Chat",
-    "QUIEN_SOY": "Quien soy"
+    "QUIEN_SOY": "Quien soy",
+    "ENCUESTA": "Encuesta"
   },
   "JUEGOS": {
     "AHORCADO": "Ahorcado",

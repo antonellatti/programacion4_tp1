@@ -12,7 +12,8 @@
     "JUEGOS": "Games",
     "RESULTADOS": "Results",
     "CHAT": "Chat",
-    "QUIEN_SOY": "About me"
+    "QUIEN_SOY": "About me",
+    "ENCUESTA": "Survey"
   },
   "JUEGOS": {
     "AHORCADO": "Hangman",

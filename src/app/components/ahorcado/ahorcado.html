@@ -3,7 +3,7 @@
 
     @if (!categoriaSeleccionada) {
       <div class="ahorcado-card">
-        <h2 class="ahorcado-titulo">Ahorcado 🪝</h2>
+        <h2 class="ahorcado-titulo">Ahorcado <i class="ti ti-fish-hook"></i></h2>
         <p class="ahorcado-subtitulo">Elegí una categoría para empezar</p>
         <div class="ahorcado-categorias">
           @for (cat of categorias; track cat.valor) {
@@ -19,10 +19,10 @@
       <div class="ahorcado-card">
         <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
         ← Volver</button>
-        <h2 class="ahorcado-titulo">Ahorcado 🪝</h2>
+        <h2 class="ahorcado-titulo">Ahorcado <i class="ti ti-fish-hook"></i></h2>
         <div class="ahorcado-info">
           <span>⏱ {{ tiempoSegundos }}s</span>
-          <span>🔠 {{ intentosRestantes }}</span>
+          <span class="ahorcado-intentos"><i class="ti ti-baseline"></i> {{ intentosRestantes }}</span>
         </div>
 
 				<div class="ahorcado-svg-container">

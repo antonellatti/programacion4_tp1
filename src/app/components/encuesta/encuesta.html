@@ -1,0 +1,115 @@
+<div class="encuesta-page">
+  <div class="encuesta-container">
+
+    @if (!enviado) {
+      <div class="encuesta-card">
+        <div class="encuesta-header">
+          <button class="encuesta-btn-volver" routerLink="/home">← Volver</button>
+          <h2 class="encuesta-titulo">Encuesta <i class="ti ti-clipboard-list"></i></h2>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="enviar()">
+
+          <!-- datos personales -->
+          <div class="encuesta-seccion">
+            <h3 class="encuesta-subtitulo">Datos personales</h3>
+
+            <div class="encuesta-field">
+              <label>Nombre y apellido</label>
+              <input formControlName="nombre_apellido" type="text" placeholder="Juan Pérez">
+              @if (form.get('nombre_apellido')?.invalid && form.get('nombre_apellido')?.touched) {
+                <span class="encuesta-error">Campo requerido</span>
+              }
+            </div>
+
+            <div class="encuesta-field">
+              <label>Edad</label>
+              <input formControlName="edad" type="number" placeholder="25">
+              @if (form.get('edad')?.invalid && form.get('edad')?.touched) {
+                <span class="encuesta-error">Debe ser mayor de 18 y menor de 99</span>
+              }
+            </div>
+
+            <div class="encuesta-field">
+              <label>Teléfono</label>
+              <input formControlName="telefono" type="text" placeholder="1112345678">
+              @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
+                <span class="encuesta-error">Solo numeros, maximo 10 caracteres</span>
+              }
+            </div>
+          </div>
+
+          <!-- opcion con radiobutton -->
+          <div class="encuesta-seccion">
+            <h3 class="encuesta-subtitulo">¿Que juego te gusto mas?</h3>
+            <div class="encuesta-radios">
+              @for (juego of juegos; track juego) {
+                <label class="encuesta-radio-label">
+                  <input type="radio" formControlName="juego_favorito" [value]="juego">
+                  {{ juego }}
+                </label>
+              }
+            </div>
+            @if (form.get('juego_favorito')?.invalid && form.get('juego_favorito')?.touched) {
+              <span class="encuesta-error">Selecciona un juego</span>
+            }
+          </div>
+
+          <!-- opcion con checkbox -->
+          <div class="encuesta-seccion" formGroupName="mejoras">
+            <h3 class="encuesta-subtitulo">¿Que mejorarias?</h3>
+            <div class="encuesta-checkboxes">
+              @for (mejora of mejoras; track mejora) {
+                <label class="encuesta-checkbox-label">
+                  <input type="checkbox" [formControlName]="mejora">
+                  {{ mejora }}
+                </label>
+              }
+            </div>
+          </div>
+
+          <!-- opcion con textarea -->
+          <div class="encuesta-seccion">
+            <h3 class="encuesta-subtitulo">Deja tu comentario</h3>
+            <div class="encuesta-field">
+              <textarea formControlName="comentario" placeholder="Escribí tu comentario..." rows="4"></textarea>
+              @if (form.get('comentario')?.invalid && form.get('comentario')?.touched) {
+                <span class="encuesta-error">Campo requerido</span>
+              }
+            </div>
+          </div>
+
+          <button class="encuesta-btn" type="submit" [disabled]="cargando">
+            {{ cargando ? 'Enviando...' : 'Enviar encuesta' }}
+          </button>
+
+        </form>
+      </div>
+    }
+
+    @if (enviado) {
+      <div class="encuesta-card encuesta-gracias">
+        <h2 class="encuesta-titulo">Gracias por tu tiempo.</h2>
+        <p class="encuesta-gracias-texto">Tu encuesta fue enviada correctamente.</p>
+        <button class="encuesta-btn" routerLink="/home">← Home</button>
+      </div>
+    }
+
+  </div>
+</div>
+
+<!-- Modal de error -->
+<div class="modal fade" id="errorModalEncuesta" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title">⚠️ Error</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">{{ errorMsg }}</div>
+      <div class="modal-footer border-secondary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

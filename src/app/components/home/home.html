@@ -2,13 +2,17 @@
 
   <nav class="navbar">
     <a class="navbar-brand shimmer-text" routerLink="/home">
-      <i class="ti ti-device-gamepad-2"></i> Sala de Juegos
+      <i class="ti ti-device-gamepad-2"></i> Antonella's Playground
     </a>
     <div class="navbar-links">
       <a routerLink="/home">{{ 'NAV.INICIO' | translate }}</a>
       @if (usuarioActual) {
         <a routerLink="/resultados">{{ 'NAV.RESULTADOS' | translate }}</a>
         <a routerLink="/chat">{{ 'NAV.CHAT' | translate }}</a>
+        <a routerLink="/encuesta">{{ 'NAV.ENCUESTA' | translate }}</a>
+        @if (esAdmin) {
+          <a routerLink="/resultados-encuestas">Ver Encuestados</a>
+        }
       }
       <a routerLink="/quien-soy">{{ 'NAV.QUIEN_SOY' | translate }}</a>
       <a (click)="cambiarIdioma()" class="btn-language" style="cursor: pointer;">
@@ -19,10 +23,9 @@
 
   <div class="home-hero shimmer-text">
     <h1>{{ 'HOME.TITULO' | translate }}
-      <i class="ti ti-heart"></i>
-      <i class="ti ti-spade"></i>
-      <i class="ti ti-diamonds"></i>
-      <i class="ti ti-clubs"></i>
+      <i class="ti ti-sparkles"></i>
+      <i class="ti ti-moon-stars"></i>
+      <i class="ti ti-stars"></i>
     </h1>
     <p>{{ 'HOME.SUBTITULO' | translate }}</p>
   </div>
@@ -65,7 +68,7 @@
       <p>{{ 'JUEGOS.PROPIO_DESC' | translate }}</p>
     </div>
     <div class="home-card" routerLink="/chat">
-      <i class="ti ti-message"></i>
+      <i class="ti ti-brand-line"></i>
       <h3>{{ 'JUEGOS.CHAT' | translate }}</h3>
       <p>{{ 'JUEGOS.CHAT_DESC' | translate }}</p>
     </div>

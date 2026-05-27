@@ -85,7 +85,7 @@ export class Preguntados implements OnInit {
 
     setTimeout(() => {
       this.siguientePregunta();
-    }, 1500);
+    }, 1250);
   }
 
   siguientePregunta() {

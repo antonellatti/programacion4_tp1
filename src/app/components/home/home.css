@@ -8,6 +8,10 @@
   font-size: 36px;
   font-weight: 500;
   margin-bottom: 12px;
+  text-shadow:
+    0 0 20px #2dd4bf,
+    0 0 40px #0284c7,
+    0 0 60px #1a37aa;
 }
 .home-hero p {
   color: rgba(255,255,255,0.6);

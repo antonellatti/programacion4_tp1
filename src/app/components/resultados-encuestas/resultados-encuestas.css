@@ -1,12 +1,12 @@
-.resultados-page {
-  background-image: url('/assets/imgs/score1.jpg');
+.res-enc-page {
+  background-image: url('/assets/imgs/joystick.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
   position: relative;
 }
-.resultados-page::before {
+.res-enc-page::before {
   content: '';
   position: absolute;
   top: 0; left: 0;
@@ -14,94 +14,80 @@
   background: rgba(0, 0, 0, 0.75);
   z-index: 0;
 }
-.resultados-container {
+.res-enc-container {
   position: relative;
   z-index: 1;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-.resultados-header {
+.res-enc-header {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.resultados-titulo {
+.res-enc-titulo {
   color: #2dd4bf;
-  font-size: 36px;
+  font-size: 26px;
   margin: 0;
 }
-.resultados-btn-volver {
+.res-enc-btn-volver {
   position: absolute;
-  left: 10px;
+  left: 0;
   background: rgba(255,255,255,0.07);
   color: #fff;
   border: 0.5px solid rgba(255,255,255,0.3);
   border-radius: 25px;
   padding: 6px 16px;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   transition: 0.2s;
 }
-.resultados-btn-volver:hover {
+.res-enc-btn-volver:hover {
   color: #2dd4bf;
   border-color: #2dd4bf;
 }
-.resultados-cargando {
+.res-enc-cargando {
   text-align: center;
   padding: 3rem;
 }
-.resultados-card {
+.res-enc-card {
   background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(3px);
-  border: 0.5px solid rgba(255,255,255,0.3);
+  border: 0.5px solid rgba(255,255,255,0.15);
   border-radius: 16px;
   padding: 1.5rem;
-  color: #fff;
+  overflow-x: auto;
 }
-.resultados-subtitulo {
-  font-size: 28px;
-  margin-bottom: 1rem;
-  color: #2dd4bf;
+.res-enc-vacio {
+  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  text-align: center;
 }
-.resultados-vacio {
-  color: #fff;
-  font-size: 18px;
-}
-.resultados-tabla {
+.res-enc-tabla {
   width: 100%;
   border-collapse: collapse;
-  font-size: 18px;
+  font-size: 13px;
+  min-width: 800px;
 }
-.resultados-tabla th {
+.res-enc-tabla th {
   color: #2dd4bf;
   padding: 8px 12px;
   text-align: left;
   border-bottom: 0.5px solid rgba(255,255,255,0.15);
+  white-space: nowrap;
 }
-.resultados-tabla td {
+.res-enc-tabla td {
   padding: 8px 12px;
-  border-bottom: 0.5px solid rgba(255,255,255,0.15);
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
   color: #fff;
 }
-.resultados-tabla tr:hover td {
-  background: rgba(255,255,255,0.1);
-  color: #2dd4bf;
+.res-enc-tabla tr:hover td {
+  background: rgba(255,255,255,0.05);
 }
-.resultados-tabla tr:last-child td {
+.res-enc-tabla tr:last-child td {
   border-bottom: none;
-}
-
-@media (max-width: 768px) {
-  .resultados-tabla {
-    font-size: 16px;
-  }
-  .resultados-tabla th,
-  .resultados-tabla td {
-    padding: 6px 8px;
-  }
 }

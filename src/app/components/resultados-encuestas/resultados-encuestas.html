@@ -1,0 +1,56 @@
+<div class="res-enc-page">
+  <div class="res-enc-container">
+    <div class="res-enc-header">
+      <button class="res-enc-btn-volver" routerLink="/home">← Volver</button>
+      <h2 class="res-enc-titulo">Resultados de las Encuestas realizadas <i class="ti ti-clipboard-list"></i></h2>
+    </div>
+
+    @if (cargando) {
+      <div class="res-enc-cargando">
+        <div class="spinner-border text-light"></div>
+      </div>
+    }
+
+    @if (!cargando && encuestas.length === 0) {
+      <div class="res-enc-card">
+        <p class="res-enc-vacio">No hay encuestas todavía</p>
+      </div>
+    }
+
+    @if (!cargando && encuestas.length > 0) {
+      <div class="res-enc-card">
+        <table class="res-enc-tabla">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Usuario</th>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Teléfono</th>
+              <th>Juego favorito</th>
+              <th>Mejoraría</th>
+              <th>Comentario</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (e of encuestas; track e.id; let i = $index) {
+              <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ e.usuario_email }}</td>
+                <td>{{ e.nombre_apellido }}</td>
+                <td>{{ e.edad }}</td>
+                <td>{{ e.telefono }}</td>
+                <td>{{ e.pregunta1 }}</td>
+                <td>{{ e.pregunta2 }}</td>
+                <td>{{ e.pregunta3 }}</td>
+                <td>{{ formatearFecha(e.created_at) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+  </div>
+</div>

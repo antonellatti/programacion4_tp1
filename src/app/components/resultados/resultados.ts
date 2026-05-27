@@ -38,7 +38,8 @@ export class Resultados implements OnInit {
       .from('resultados_ahorcado')
       .select('*')
       .order('gano', { ascending: false })
-      .order('intentos_usados', { ascending: true });
+      .order('intentos_usados', { ascending: true })
+      .limit(10);
     this.resultadosAhorcado = data || [];
   }
 
@@ -46,7 +47,8 @@ export class Resultados implements OnInit {
     const { data } = await this.supabase.client
       .from('resultados_mayor_menor')
       .select('*')
-      .order('cartas_acertadas', { ascending: false });
+      .order('cartas_acertadas', { ascending: false })
+      .limit(10);
     this.resultadosMayorMenor = data || [];
   }
 
@@ -54,7 +56,8 @@ export class Resultados implements OnInit {
     const { data } = await this.supabase.client
       .from('resultados_preguntados')
       .select('*')
-      .order('correctas', { ascending: false });
+      .order('correctas', { ascending: false })
+      .limit(10);
     this.resultadosPreguntados = data || [];
   }
 
@@ -62,7 +65,8 @@ export class Resultados implements OnInit {
     const { data } = await this.supabase.client
       .from('resultados_adivina_crucero')
       .select('*')
-      .order('correctas', { ascending: false });
+      .order('correctas', { ascending: false })
+      .limit(10);
     this.resultadosCrucero = data || [];
   }
 

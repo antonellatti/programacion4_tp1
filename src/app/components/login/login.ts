@@ -19,7 +19,7 @@ export class Login {
   cargando = false;
 
   usuariosRapidos = [
-    { email: 'antonella@hotmail.com', password: '123456', nombre: 'Antonella' },
+    { email: 'antonella@hotmail.com', password: '789456', nombre: 'Antonella' },
     { email: 'putty@miau.com', password: '111111', nombre: 'Tutti' },
     { email: 'leonardo@miau.com', password: '222222', nombre: 'Leonardo' }
   ];
