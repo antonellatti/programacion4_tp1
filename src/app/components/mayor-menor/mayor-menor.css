@@ -47,9 +47,13 @@
   font-size: 16px;
 }
 .mayor-menor-mensaje {
-  font-size: 22px;
-  margin-bottom: 1rem;
+  font-size: 20px;
   min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  margin-bottom: 1rem;
 }
 .mayor-menor-cartas {
   display: flex;

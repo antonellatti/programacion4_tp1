@@ -38,6 +38,17 @@
             </button>
           }
         </div>
+
+        @if (mostrandoFeedback) {
+          <div class="preguntados-feedback" [class.correcto]="respuestaCorrecta">
+            @if (respuestaCorrecta) {
+              <span>✅ Correcto ✅</span>
+            } @else {
+              <span>❌ Incorrecto ❌</span>
+            }
+          </div>
+        }
+        
       </div>
     }
 

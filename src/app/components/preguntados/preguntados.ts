@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { SupabaseService } from '../../services/supabase';
 import { TranslateService } from '@ngx-translate/core';
 
-
 interface Pregunta {
   question: string;
   correctAnswer: string;
@@ -33,6 +32,7 @@ export class Preguntados implements OnInit {
   cargando = true;
   error = false;
   errorMsg = '';
+  mostrandoFeedback = false;
 
   constructor(
     private http: HttpClient,
@@ -48,7 +48,6 @@ export class Preguntados implements OnInit {
   cargarPreguntas() {
     this.cargando = true;
     this.error = false;
-    const idioma = this.translate.currentLang || 'es';
     const url = `https://the-trivia-api.com/v2/questions?limit=10`;
 
     this.http.get<any[]>(url).subscribe({
@@ -80,12 +79,17 @@ export class Preguntados implements OnInit {
     if (this.respuestaSeleccionada) return;
     this.respuestaSeleccionada = opcion;
     this.respuestaCorrecta = opcion === this.preguntaActual?.correctAnswer;
+    this.mostrandoFeedback = true;
     if (this.respuestaCorrecta) this.correctas++;
     this.cdr.detectChanges();
 
     setTimeout(() => {
+      this.mostrandoFeedback = false;
+      this.respuestaSeleccionada = '';
+      this.respuestaCorrecta = false;
       this.siguientePregunta();
-    }, 1250);
+      this.cdr.detectChanges();
+    }, 1250);  // ← esta llave cerraba el método antes, faltaba esto
   }
 
   siguientePregunta() {
@@ -95,8 +99,6 @@ export class Preguntados implements OnInit {
       this.guardarResultado();
     } else {
       this.preguntaActual = this.preguntas[this.indicePregunta];
-      this.respuestaSeleccionada = '';
-      this.respuestaCorrecta = false;
     }
     this.cdr.detectChanges();
   }
@@ -135,5 +137,4 @@ export class Preguntados implements OnInit {
     const modal = new bootstrap.Modal(document.getElementById('errorModalPreguntados'));
     modal.show();
   }
-
 }

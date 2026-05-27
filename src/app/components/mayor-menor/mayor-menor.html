@@ -13,9 +13,9 @@
         <button class="btn-volver" routerLink="/home" style="margin-bottom: 1rem;">
           ← Volver</button>
 
-        @if (mensajeResultado) {
-          <div class="mayor-menor-mensaje">{{ mensajeResultado }}</div>
-        }
+          @if (mensajeResultado) {
+            <div class="mayor-menor-mensaje">{{ mensajeResultado }}</div>
+          }
 
         <div class="mayor-menor-cartas">
           @if (cartaActual) {
@@ -49,6 +49,7 @@
             ⬇ Menor ⬇
           </button>
         </div>
+
       </div>
     }
 
