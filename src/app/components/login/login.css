@@ -90,7 +90,7 @@
 }
 .login-divider::before { left: 0; }
 .login-divider::after { right: 0; }
-.login-rapido {
+/* .login-rapido {
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -109,7 +109,7 @@
 .login-btn-rapido:hover {
   background: rgba(45,212,191,0.1);
   border-color: #2dd4bf;
-}
+} */
 .login-registro {
   text-align: center;
   color: rgba(255,255,255,0.5);

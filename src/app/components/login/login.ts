@@ -18,11 +18,11 @@ export class Login {
   errorMsg = '';
   cargando = false;
 
-  usuariosRapidos = [
-    { email: 'antonella@hotmail.com', password: '789456', nombre: 'Antonella' },
-    { email: 'putty@miau.com', password: '111111', nombre: 'Tutti' },
-    { email: 'leonardo@miau.com', password: '222222', nombre: 'Leonardo' }
-  ];
+  // usuariosRapidos = [
+  //   { email: 'antonella@hotmail.com', password: '789456', nombre: 'Antonella' },
+  //   { email: 'putty@miau.com', password: '111111', nombre: 'Tutti' },
+  //   { email: 'leonardo@miau.com', password: '222222', nombre: 'Leonardo' }
+  // ];
 
   constructor(
     private fb: FormBuilder,
@@ -57,15 +57,15 @@ export class Login {
     }
   }
 
-  async loginRapido(usuario: any) {
-    this.cargando = true;
-    try {
-      await this.supabase.login(usuario.email, usuario.password);
-      this.router.navigate(['/home']);
-    } catch (e: any) {
-      this.mostrarError('Error en inicio de sesión rápido.');
-    } finally {
-      this.cargando = false;
-    }
-  }
-}
+//   async loginRapido(usuario: any) {
+//     this.cargando = true;
+//     try {
+//       await this.supabase.login(usuario.email, usuario.password);
+//       this.router.navigate(['/home']);
+//     } catch (e: any) {
+//       this.mostrarError('Error en inicio de sesión rápido.');
+//     } finally {
+//       this.cargando = false;
+//     }
+//   }
+ }
