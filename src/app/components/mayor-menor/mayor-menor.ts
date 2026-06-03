@@ -38,17 +38,16 @@ export class MayorMenor implements OnInit {
   }
 
   iniciarJuego() {
-    this.mazo = [];
+    let mazoBase: Carta[] = [];
     for (const palo of this.palos) {
       for (let valor = 1; valor <= 10; valor++) {
-        this.mazo.push({
-          valor,
-          palo,
-          imagen: ''
-        });
+        mazoBase.push({ valor, palo, imagen: '' });
       }
     }
-    this.mazo = this.mezclar(this.mazo);
+
+    // Mezclamos el mazo y removemos los empates consecutivos de entrada
+    this.mazo = this.generarMazoSinEmpates(mazoBase);
+    
     this.cartaActual = this.mazo.pop()!;
     this.cartasAcertadas = 0;
     this.totalCartas = 0;
@@ -58,18 +57,52 @@ export class MayorMenor implements OnInit {
     this.cdr.detectChanges();
   }
 
+  // Algoritmo Fisher-Yates para un mezclado verdaderamente aleatorio
   mezclar(mazo: Carta[]): Carta[] {
-    return mazo.sort(() => Math.random() - 0.5);
+    for (let i = mazo.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [mazo[i], mazo[j]] = [mazo[j], mazo[i]];
+    }
+    return mazo;
+  }
+
+  // Garantiza que no existan dos cartas seguidas con el mismo valor numérico
+  generarMazoSinEmpates(mazoBase: Carta[]): Carta[] {
+    let mazoMezclado = this.mezclar([...mazoBase]);
+    let resultado: Carta[] = [];
+
+    while (mazoMezclado.length > 0) {
+      const carta = mazoMezclado.pop()!;
+      
+      // Si es igual a la última que agregamos, la devolvemos al inicio para separarla
+      if (resultado.length > 0 && carta.valor === resultado[resultado.length - 1].valor) {
+        mazoMezclado.unshift(carta);
+        // Si solo quedan duplicados idénticos al final, mezclamos de nuevo para resetear el orden
+        if (mazoMezclado.every(c => c.valor === carta.valor)) {
+          mazoMezclado = this.mezclar(mazoMezclado);
+        }
+      } else {
+        resultado.push(carta);
+      }
+    }
+    return resultado;
   }
 
   elegir(opcion: 'mayor' | 'menor') {
-    if (!this.mazo.length) {
+    // 1. CONTROL DE ENTRADA: Si ya llegó a 15 intentos, frena de inmediato
+    if (this.totalCartas >= 15 || !this.mazo.length) {
       this.terminarJuego();
       return;
     }
 
-    this.cartaSiguiente = this.mazo.pop()!;
+    // 2. INCREMENTO INMEDIATO: Sumamos el intento ni bien el usuario hace clic
     this.totalCartas++;
+
+    // Extraemos la primera carta candidata
+    let candidata = this.mazo.pop()!;
+    
+    // El resto de tu lógica limpia para manejar la carta siguiente...
+    this.cartaSiguiente = candidata;
     this.mostrarSiguiente = true;
 
     const esCorrecta =
@@ -85,13 +118,15 @@ export class MayorMenor implements OnInit {
 
     this.cdr.detectChanges();
 
+    // 3. CONTROL DE SALIDA: Evaluamos el cierre al terminar la animación
     setTimeout(() => {
       this.cartaActual = this.cartaSiguiente;
       this.cartaSiguiente = null;
       this.mostrarSiguiente = false;
       this.mensajeResultado = '';
 
-      if (!this.mazo.length) {
+      // Si con este intento se alcanzaron las 15 jugadas o se vació el mazo, termina el juego
+      if (this.totalCartas >= 15 || !this.mazo.length) {
         this.terminarJuego();
       }
       this.cdr.detectChanges();
@@ -104,14 +139,12 @@ export class MayorMenor implements OnInit {
   }
   
   getEmoji(palo: string): string {
-  const emojis: { [key: string]: string } = {
-    oros: '🪙',
-    copas: '🏆',
-    espadas: '⚔️',
-    bastos: '🪵'
-  };
-  return emojis[palo] || '';
-}
+    const emojis: { [key: string]: string } = {
+      oros: '🪙', copas: '🏆', espadas: '⚔️', bastos: '🪵'
+    };
+    return emojis[palo] || '';
+  }
+
   async guardarResultado() {
     const user = await this.supabase.getUsuarioActual();
     if (!user) return;

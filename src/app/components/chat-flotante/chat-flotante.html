@@ -1,4 +1,4 @@
-@if (usuarioActual && !estaEnChat) {
+@if (tieneAccesoAlChat && !estaEnChat) {
   <div class="chat-flotante" [class.expandido]="expandido">
     
     <div class="chat-flotante-header" (click)="toggleChat()">

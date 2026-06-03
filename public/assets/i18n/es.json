@@ -17,15 +17,15 @@
   },
   "JUEGOS": {
     "AHORCADO": "Ahorcado",
-    "AHORCADO_DESC": "Adivinar la palabra letra por letra",
+    "AHORCADO_DESC": "Adivina la palabra letra por letra",
     "MAYOR_MENOR": "Mayor o menor",
-    "MAYOR_MENOR_DESC": "Adivinar si la carta que sigue es mayor o menor.",
+    "MAYOR_MENOR_DESC": "Adivina si la carta que sigue es mayor o menor.",
     "PREGUNTADOS": "Preguntados",
     "PREGUNTADOS_DESC": "Preguntas de distintas categorias",
     "PROPIO": "¿Que crucero es?",
-    "PROPIO_DESC": "En el mar hay muchas lineas de cruceros. ¿Los reconoces?",
-    "CHAT": "Chat global",
-    "CHAT_DESC": "Chat en tiempo real"
+    "PROPIO_DESC": "Desafia tus conocimientos sobre barcos y puertos",
+    "CHAT": "Chat",
+    "CHAT_DESC": "Deja tu mensaje"
   },
   "LOGIN": {
     "TITULO": "Iniciar Sesion",

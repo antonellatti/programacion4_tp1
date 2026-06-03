@@ -27,6 +27,7 @@ export class ChatFlotante implements OnInit, OnDestroy {
   nuevoMensaje = '';
   usuarioActual: any = null;
   nombreUsuario = '';
+  nicknameInvitado = ''; /* <-- Agregamos la propiedad para guardar al invitado de tu localStorage */
   cargando = false;
   expandido = false;
   suscripcion: any;
@@ -41,23 +42,47 @@ export class ChatFlotante implements OnInit, OnDestroy {
     return this.router.url === '/chat';
   }
 
+  /* <-- Propiedad que tu HTML necesita leer para renderizarse o no --> */
+  get tieneAccesoAlChat(): boolean {
+    return !!this.usuarioActual || !!this.nicknameInvitado;
+  }
+
   async ngOnInit() {
+    // 1. Buscamos si hay un invitado logueado en el navegador
+    this.nicknameInvitado = localStorage.getItem('guest_nickname') || '';
+
+    // 2. Comprobamos el estado del usuario de base de datos
     this.usuarioActual = await this.supabase.getUsuarioActual();
     if (this.usuarioActual) {
       this.nombreUsuario = await this.supabase.getNombreUsuario(this.usuarioActual.id);
+    }
+
+    // 3. Si es usuario real O es invitado, cargamos el chat sin trabas
+    if (this.tieneAccesoAlChat) {
       await this.cargarMensajes();
       this.suscribirseAlChat();
     }
+    this.cdr.detectChanges();
 
+    // 4. Escuchamos cambios de sesión
     this.supabase.onAuthChange(async (user) => {
       this.usuarioActual = user;
+      // Volvemos a leer por las dudas si mutó el estado en simultáneo
+      this.nicknameInvitado = localStorage.getItem('guest_nickname') || '';
+
       if (user) {
         this.nombreUsuario = await this.supabase.getNombreUsuario(user.id);
         await this.cargarMensajes();
         this.suscribirseAlChat();
       } else {
-        this.mensajes = [];
-        this.expandido = false;
+        // vaciamos el chat si no hay usuario o invitado, Si hay invitado activo, dejamos los mensajes vivos.
+        if (!this.nicknameInvitado) {
+          this.mensajes = [];
+          this.expandido = false;
+        } else {
+          await this.cargarMensajes();
+          this.suscribirseAlChat();
+        }
       }
       this.cdr.detectChanges();
     });
@@ -81,10 +106,14 @@ export class ChatFlotante implements OnInit, OnDestroy {
     if (this.suscripcion) {
       this.supabase.client.removeChannel(this.suscripcion);
     }
+
+    // Identificador único para el canal basado en el tipo de sesión activo
+    const idPresencia = this.usuarioActual?.id || `invitado-${this.nicknameInvitado}`;
+
     this.suscripcion = this.supabase.client
       .channel('chat-flotante', {
         config: {
-          presence: { key: this.usuarioActual?.id }
+          presence: { key: idPresencia }
         }
       })
       .on('postgres_changes',
@@ -101,15 +130,21 @@ export class ChatFlotante implements OnInit, OnDestroy {
   }
 
   async enviarMensaje() {
-    if (!this.nuevoMensaje.trim() || !this.usuarioActual) return;
+    // Si no hay texto o directamente no tiene accesos concedidos, frenamos
+    if (!this.nuevoMensaje.trim() || !this.tieneAccesoAlChat) return;
     this.cargando = true;
+
+    // Evaluamos dinámicamente los campos requeridos por la estructura de la bdbdd    const idEmisor = this.usuarioActual?.id || `invitado-${this.nicknameInvitado}`;
+    const idEmisor = this.usuarioActual?.id || `invitado-${this.nicknameInvitado}`;
+    const emailEmisor = this.usuarioActual?.email || 'invitado@playground.com';
+    const nombreEmisor = this.usuarioActual ? (this.nombreUsuario || this.usuarioActual.email) : this.nicknameInvitado;
 
     await this.supabase.client
       .from('chat_mensajes')
       .insert({
-        usuario_id: this.usuarioActual.id,
-        usuario_email: this.usuarioActual.email,
-        usuario_nombre: this.nombreUsuario || this.usuarioActual.email,
+        usuario_id: idEmisor,
+        usuario_email: emailEmisor,
+        usuario_nombre: nombreEmisor,
         mensaje: this.nuevoMensaje.trim()
       });
 
@@ -126,8 +161,10 @@ export class ChatFlotante implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
+  // Compara contra cualquiera de las formas válidas de sesión activa
   esMio(mensaje: Mensaje): boolean {
-    return mensaje.usuario_id === this.usuarioActual?.id;
+    const idActual = this.usuarioActual?.id || `invitado-${this.nicknameInvitado}`;
+    return mensaje.usuario_id === idActual;
   }
 
   formatearHora(fecha: string): string {
