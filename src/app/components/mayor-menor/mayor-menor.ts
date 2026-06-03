@@ -146,16 +146,17 @@ export class MayorMenor implements OnInit {
   }
 
   async guardarResultado() {
-    const user = await this.supabase.getUsuarioActual();
-    if (!user) return;
+    // Llamamos al servicio centralizado
+    const usuario = await this.supabase.getIdentificadorUsuario();
 
     await this.supabase.client
-      .from('resultados_mayor_menor')
+      .from('resultados_mayor_menor') // tabla del juego
       .insert({
-        usuario_id: user.id,
-        usuario_email: user.email,
+        usuario_id: usuario.id, // Va el UUID o null
+        usuario_email: usuario.nombre, // Guarda Nombre o Nickname limpio
         cartas_acertadas: this.cartasAcertadas,
         total_cartas: this.totalCartas
       });
   }
+
 }

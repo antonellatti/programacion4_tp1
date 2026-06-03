@@ -98,14 +98,13 @@ export class Ahorcado implements OnInit {
   }
 
   async guardarResultado() {
-    const user = await this.supabase.getUsuarioActual();
-    if (!user) return;
+    const usuario = await this.supabase.getIdentificadorUsuario();
 
     await this.supabase.client
       .from('resultados_ahorcado')
       .insert({
-        usuario_id: user.id,
-        usuario_email: user.email,
+        usuario_id: usuario.id,
+        usuario_email: usuario.nombre,
         palabra: this.palabraSecreta,
         gano: this.gano,
         intentos_usados: this.letrasErradas.length,

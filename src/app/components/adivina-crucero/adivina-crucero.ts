@@ -133,14 +133,13 @@ export class AdivinaCrucero implements OnInit {
 
 
   async guardarResultado() {
-    const user = await this.supabase.getUsuarioActual();
-    if (!user) return;
+    const usuario = await this.supabase.getIdentificadorUsuario();
 
     await this.supabase.client
       .from('resultados_adivina_crucero')
       .insert({
-        usuario_id: user.id,
-        usuario_email: user.email,
+        usuario_id: usuario.id,
+        usuario_email: usuario.nombre,
         correctas: this.correctas,
         total_preguntas: this.preguntas.length,
         categoria: this.categoriaSeleccionada

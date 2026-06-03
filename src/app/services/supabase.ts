@@ -61,4 +61,26 @@ export class SupabaseService {
       callback(session?.user ?? null);
     });
   }
+  
+  async getIdentificadorUsuario(): Promise<{ id: string | null; nombre: string }> {
+    const { data } = await this.supabase.auth.getUser();
+    const user = data.user;
+
+    if (user) {
+      // Si está logueado, buscamos su nombre en la tabla 'usuarios'
+      const nombreReal = await this.getNombreUsuario(user.id);
+      return {
+        id: user.id,
+        nombre: nombreReal || user.email || 'Usuario Registrado'
+      };
+    } else {
+      // Si no hay sesión, es un invitado
+      const nicknameInvitado = localStorage.getItem('guest_nickname');
+      return {
+        id: null, // El UUID queda en null para la base de datos
+        nombre: nicknameInvitado ? `Invitado: ${nicknameInvitado}` : 'Invitado Anónimo'
+      };
+    }
+  }
+
 }

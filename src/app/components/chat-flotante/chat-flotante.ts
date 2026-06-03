@@ -130,25 +130,38 @@ export class ChatFlotante implements OnInit, OnDestroy {
   }
 
   async enviarMensaje() {
-    // Si no hay texto o directamente no tiene accesos concedidos, frenamos
     if (!this.nuevoMensaje.trim() || !this.tieneAccesoAlChat) return;
     this.cargando = true;
 
-    // Evaluamos dinámicamente los campos requeridos por la estructura de la bdbdd    const idEmisor = this.usuarioActual?.id || `invitado-${this.nicknameInvitado}`;
-    const idEmisor = this.usuarioActual?.id || `invitado-${this.nicknameInvitado}`;
-    const emailEmisor = this.usuarioActual?.email || 'invitado@playground.com';
-    const nombreEmisor = this.usuarioActual ? (this.nombreUsuario || this.usuarioActual.email) : this.nicknameInvitado;
+    // ID como UUID real o null si es invitado (así no se rompe la base de datos)
+    const idEmisor = this.usuarioActual ? this.usuarioActual.id : null;
+    
+    // definimos el correo y el nombre de forma segura
+    const emailEmisor = this.usuarioActual ? this.usuarioActual.email : 'invitado@playground.com';
+    const nombreEmisor = this.usuarioActual 
+      ? (this.nombreUsuario || this.usuarioActual.email) 
+      : (this.nicknameInvitado || 'Invitado Anónimo');
 
-    await this.supabase.client
-      .from('chat_mensajes')
-      .insert({
-        usuario_id: idEmisor,
-        usuario_email: emailEmisor,
-        usuario_nombre: nombreEmisor,
-        mensaje: this.nuevoMensaje.trim()
-      });
+    try {
+      // Enviamos a Supabase
+      const { error } = await this.supabase.client
+        .from('chat_mensajes')
+        .insert({
+          usuario_id: idEmisor,   // Admite UUID o null sin quejarse
+          usuario_email: emailEmisor,
+          usuario_nombre: nombreEmisor,
+          mensaje: this.nuevoMensaje.trim()
+        });
 
-    this.nuevoMensaje = '';
+      if (error) {
+        console.error('Error de Supabase al insertar:', error.message);
+      } else {
+        this.nuevoMensaje = ''; // Limpia el input solo si se guardó con éxito
+      }
+    } catch (err) {
+      console.error('Error inesperado:', err);
+    }
+
     this.cargando = false;
     this.cdr.detectChanges();
   }

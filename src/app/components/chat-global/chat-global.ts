@@ -72,19 +72,35 @@ export class ChatGlobal implements OnInit, OnDestroy {
   }
 
   async enviarMensaje() {
-    if (!this.nuevoMensaje.trim() || !this.usuarioActual) return;
+    const nicknameInvitado = localStorage.getItem('guest_nickname');
+    if (!this.nuevoMensaje.trim() || (!this.usuarioActual && !nicknameInvitado)) return;
+    
     this.cargando = true;
 
-    await this.supabase.client
-      .from('chat_mensajes')
-      .insert({
-        usuario_id: this.usuarioActual.id,
-        usuario_email: this.usuarioActual.email,
-        usuario_nombre: this.nombreUsuario || this.usuarioActual.email,
-        mensaje: this.nuevoMensaje.trim()
-      });
+    // UUID real si está logueado, null si es invitado para no romper la columna UUID
+    const idEmisor = this.usuarioActual ? this.usuarioActual.id : null;
+    
+    // Definimos los textos para guardar
+    const emailEmisor = this.usuarioActual ? this.usuarioActual.email : 'invitado@playground.com';
+    const nombreEmisor = this.usuarioActual 
+      ? (this.nombreUsuario || this.usuarioActual.email) 
+      : (nicknameInvitado || 'Invitado Anónimo');
 
-    this.nuevoMensaje = '';
+    try {
+      await this.supabase.client
+        .from('chat_mensajes')
+        .insert({
+          usuario_id: idEmisor,
+          usuario_email: emailEmisor,
+          usuario_nombre: nombreEmisor,
+          mensaje: this.nuevoMensaje.trim()
+        });
+
+      this.nuevoMensaje = ''; // Solo limpia el input si completó el proceso
+    } catch (error) {
+      console.error('Error al enviar en chat global:', error);
+    }
+
     this.cargando = false;
     this.cdr.detectChanges();
   }
